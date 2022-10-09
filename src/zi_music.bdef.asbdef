@@ -1,0 +1,44 @@
+managed implementation in class zcl_sapdev_music_bdef unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_MUSIC alias Music
+persistent table zatb_musiclib0
+draft table zatb_musiclib0d
+etag master LastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+
+{
+  field ( readonly )
+   MusicKey;
+
+  field ( numbering : managed )
+   MusicKey;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZATB_MUSICLIB0
+  {
+    MusicKey = MUSIC_KEY;
+    MusicID = MUSIC_ID;
+    Artist = ARTIST;
+    Title = TITLE;
+    Genre = GENRE;
+    Lyrics = LYRICS;
+    Url = URL;
+    CreatedBy = CREATED_BY;
+    CreatedAt = CREATED_AT;
+    LastChangedBy = LAST_CHANGED_BY;
+    LastChangedAt = LAST_CHANGED_AT;
+  }
+}
